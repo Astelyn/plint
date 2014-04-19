@@ -1,4 +1,10 @@
 <?php
+require("config.php");
+require("theme.php");
+
+Config::load();
+Theme::load(Config::get("theme", "name"));
+
 $uri = explode('/', $_SERVER['REQUEST_URI']);
 
 switch ($uri[count($uri) - 2])
@@ -29,16 +35,16 @@ class Index
 {
 	function __construct()
 	{
-		// Pull data and do whatever
+
 	}
 	
 	function display()
 	{
 		// TODO: use a class to manage themes; this is a placeholder
-		include("themes/default/templates/header.html");
+		Theme::display_header();
 ?>
 		<p>Test</p>
 <?php		
-		include("themes/default/templates/footer.html");
+		Theme::display_footer();
 	}
 }
